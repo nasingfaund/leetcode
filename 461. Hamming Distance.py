@@ -7,3 +7,4 @@ class Solution:
             n >>=1
         return res
         
+# one liner - bin(x^y).count('1')
