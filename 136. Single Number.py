@@ -1,3 +1,7 @@
+"""
+Other solutions - https://leetcode.com/problems/single-number/discuss/43000/Python-different-solutions.
+"""
+
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
         res= 0
