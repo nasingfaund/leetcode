@@ -18,7 +18,7 @@ public:
     }
 };
 
-// with hashmap O(n) 
+// One-pass Hash Table O(n) 
 class Solution {
 public:
 vector<int> twoSum(vector<int> &nums, int target) {
