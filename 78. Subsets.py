@@ -22,7 +22,7 @@ class Solution:
         for i in range(1 << len(nums)):
             aset = []
             for j in range(len(nums)):
-                value = (1 << j) & i
+                value = (1 << j) & i #  value = (i >> j) & 1
                 if value:
                     aset.append(nums[j])
             res.append(aset)
