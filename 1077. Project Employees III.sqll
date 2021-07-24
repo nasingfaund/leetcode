@@ -1,0 +1,13 @@
+select project_id, E.employee_id from Project inner join Employee E on Project.employee_id = E.employee_id where (project_id, experience_years) in (
+select project_id,  max(experience_years) as exp from Project inner join Employee E on Project.employee_id = E.employee_id group by project_id);
+
+
+-- window function
+select t.project_id, t.employee_id
+from
+    (select project_id,
+            p.employee_id,
+            rank() over(partition by project_id order by experience_years desc) as rank
+     from Project p join Employee e
+                         on p.employee_id = e.employee_id) t
+where t.rank = 1;
