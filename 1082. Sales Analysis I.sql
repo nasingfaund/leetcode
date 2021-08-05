@@ -1,5 +1,4 @@
 select seller_id
 from (
-         select seller_id, rank() over (order by t.m desc) as rnk
-         from (select seller_id, sum(price) as m from Sales group by seller_id order by m desc) T) TT
-where TT.rnk = 1;
+         select seller_id, rank() over (order by sum(price) desc) as rnk from sales group by seller_id) T
+where T.rnk = 1;
