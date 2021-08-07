@@ -1,3 +1,3 @@
 # leetcode
 
-Solutions to some leetcode problems 
+Shitty solutions to some leetcode problems. Enjoy!
