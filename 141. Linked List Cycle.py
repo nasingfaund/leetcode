@@ -1,5 +1,17 @@
 class Solution:
     def hasCycle(self, head: ListNode) -> bool:
+        def _hasCycle(head: ListNode, seen) -> bool:
+            if not head:
+                return False
+            if head in seen:
+                return True
+
+            return _hasCycle(head.next, seen + [head])
+        return _hasCycle(head, [])
+        
+
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
         if not head:
             return False
         temp = head
