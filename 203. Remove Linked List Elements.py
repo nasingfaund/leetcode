@@ -3,6 +3,24 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
+class Solution:
+    def removeElements(self, head, val):
+        new_head = curr = ListNode()
+        while head:
+            if head.val != val:
+                curr.next = ListNode(head.val)
+                curr = curr.next
+                
+            head = head.next
+            
+        return new_head.next
+
+
+
+
+
+
 class Solution:
     def removeElements(self, head, val):
         if head is None:
