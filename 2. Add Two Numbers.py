@@ -42,4 +42,29 @@ class Solution:
             curr.next = ListNode(rem)
             
         return result.next
+    
+    
+    
+    
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        dummy_head = curr = ListNode(-1)
+        carry = 0
+        p = l1
+        q  = l2
+        while p or q:
+            x = p.val if p else 0
+            y = q.val if q else 0
+            result_sum = carry + x + y
+            carry = result_sum // 10
+            curr.next= ListNode(result_sum % 10)
+            curr = curr.next
+            if p: p = p.next
+            if q:q = q.next
+                
+        if carry > 0:
+            curr.next = ListNode(carry)
+            
+        return dummy_head.next
+        
         
