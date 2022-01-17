@@ -59,6 +59,8 @@ class Solution:
             carry = result_sum // 10
             curr.next= ListNode(result_sum % 10)
             curr = curr.next
+#             carry, val = divmod(carry + x + y, 10)
+#             curr.next= ListNode(val)
             if p: p = p.next
             if q:q = q.next
                 
