@@ -1,24 +1,16 @@
 # clever solution
 class Solution:
     def deleteNode(self, node):
-        """
-        :type node: ListNode
-        :rtype: void Do not return anything, modify node in-place instead.
+        if not node or not node.next:
+            return False
         
-        """
-        temp = node
-        temp.val = temp.next.val
+        node.val = node.next.val
+        node.next = node.next.next
 
-        temp.next = temp.next.next
-
-
+        
+# stupid solution 
 class Solution:
     def deleteNode(self, node):
-        """
-        :type node: ListNode
-        :rtype: void Do not return anything, modify node in-place instead.
-        
-        """
         temp = node
         while temp.next:
             prev = temp
