@@ -20,6 +20,32 @@ class Solution:
         temp.next = None
         return head
     
+    
+class Solution:
+    def rotateRight(self, head, k):
+        if not head or not head.next:
+            return head
+        
+        tail = head
+        n = 1
+        
+        while tail.next:
+            tail = tail.next
+            n += 1
+            
+        if k % n == 0:
+            return head
+        
+        middle = head
+        for i in range(n - k%n-1):
+            middle = middle.next
+            
+        new_head = middle.next
+        tail.next = head
+        middle.next = None
+        return new_head
+        
+    
 class Solution:
     def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         if not head:
