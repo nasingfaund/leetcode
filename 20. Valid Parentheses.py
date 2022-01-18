@@ -7,10 +7,10 @@ class Solution:
         }
         stack = []
         for i in range(len(s)):
-            if s[i] in ['(', '{', '[']:
+            if s[i] in mapping.keys():
                 stack.append(s[i])
 
-            if s[i] in [')', '}', ']']:
+            if s[i] in mapping.values():
                 if not stack:
                     return False
                 val = stack.pop()
