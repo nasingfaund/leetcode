@@ -1,4 +1,4 @@
-
+# Follow up: Could you do it in O(n) time and O(1) space?
 # stack
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
