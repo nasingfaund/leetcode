@@ -15,9 +15,29 @@ class Solution:
                 return False
             head = head.next
         return True
+    
+# No need to put in stack all nodes, half is enough
+class Solution:
+    def isPalindrome(self, head):
+        slow = fast = head
+        stack  = []
+        while fast and fast.next:
+            stack.append(slow.val)
+            slow = slow.next
+            fast = fast.next.next
+        
+        if fast:
+            slow = slow.next
+            
+        while slow:
+            top = stack.pop()
+            if top  != slow.val:
+                return False
+            slow = slow.next
+        return True
+            
             
 # with revert
-
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
         rev_head  = None
