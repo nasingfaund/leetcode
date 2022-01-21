@@ -1,14 +1,18 @@
+# Complexity O(n), space O(n)
 class Solution:
-    def reverseList(self, head: 'ListNode') -> 'ListNode':
+    def reverseList(self, head):
         new_head = None
+        
         while head:
-            tmp = head.next
+            temp = head.next
+            
             head.next = new_head
             new_head = head
-            head = tmp
             
+            head = temp
+
         return new_head
-    
+
     
 class Solution:
     def reverseList(self, head):
