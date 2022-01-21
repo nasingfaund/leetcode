@@ -1,3 +1,4 @@
+# Complexity O(n), Space O(1)
 class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:
         temp = head
