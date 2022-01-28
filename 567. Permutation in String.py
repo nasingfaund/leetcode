@@ -86,32 +86,22 @@ class Solution:
     
 # Sliding Window
 class Solution:
-    def compare(self, s1_map, s2_map):
-        for i in range(26):
-            if s1_map[i] ^ s2_map[i]:
+    def checkInclusion(self, s1, s2):
+            if len(s1) > len(s2):
                 return False
-        return True
-            
-    def checkInclusion(self, s1: str, s2: str) -> bool:
-        if len(s1) > len(s2):
-            return False
+            l1 = [0]*26
+            l2 = [0]*26
+            for i in range(len(s1)):
+                l1[ord(s1[i]) - ord('a')] += 1
+                l2[ord(s2[i]) - ord('a')] += 1
 
-        s1_map = [0] * 26
-        s2_map = [0] * 26
+            for i in range(len(s2)-len(s1)):
+                if l1 == l2:
+                    return True
+                l2[ord(s2[i]) - ord('a')] -= 1
+                l2[ord(s2[i + len(s1)]) - ord('a')] += 1
+            return l1 ==l2 
 
-        a_ord = ord('a')
-        win_size = len(s1)
-        for i in range(win_size):
-            s1_map[ord(s1[i]) - a_ord] += 1
-            s2_map[ord(s2[i]) - a_ord] += 1
-
-        for i in range(len(s2) - win_size):
-            if self.compare(s1_map, s2_map):
-                return True
-            s2_map[ord(s2[i + win_size]) - a_ord] += 1
-            s2_map[ord(s2[i]) - a_ord] -= 1
-
-        return self.compare(s1_map, s2_map)
     
 # Optimized Sliding Window
 class Solution:
