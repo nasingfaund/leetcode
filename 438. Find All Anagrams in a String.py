@@ -3,7 +3,7 @@ class Solution:
         if len(p) > len(s):
             return []
         result = []
-        l1 = [0]*26 # todo: check correctness
+        l1 = [0]*26 
         win_size = len(p)
         
         for i in range(len(p)):
