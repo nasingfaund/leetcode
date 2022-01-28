@@ -60,12 +60,6 @@ class Solution:
     
 # using array, passing
 class Solution:
-    def compare(self, s1_map, s2_map):
-        for i in range(26):
-            if s1_map[i] != s2_map[i]:
-                return False
-        return True
-            
     def checkInclusion(self, s1: str, s2: str) -> bool:
         if len(s1) > len(s2):
             return False
@@ -79,7 +73,7 @@ class Solution:
             s2_map = [0]*26
             for j in range(len(s1)):
                 s2_map[ord(s2[i+j])-a_ord] +=1
-            if self.compare(s1_map, s2_map):
+            if s1_map == s2_map:
                 return True
 
         return False
@@ -105,12 +99,6 @@ class Solution:
     
 # Optimized Sliding Window
 class Solution:
-    def compare(self, s1_map, s2_map):
-        for i in range(26):
-            if s1_map[i] ^ s2_map[i]:
-                return False
-        return True
-            
     def checkInclusion(self, s1: str, s2: str) -> bool:
         if len(s1) > len(s2):
             return False
