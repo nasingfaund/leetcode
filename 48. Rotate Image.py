@@ -1,3 +1,5 @@
+# Rotate Groups of Four Cells, time complexity O(M - the number of cells in matrix) as each cell is getting read once and written once.
+# O(1) - space complexity (because we do not use any other additional data structures)
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
         """
