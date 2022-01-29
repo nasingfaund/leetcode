@@ -1,3 +1,49 @@
+# Space Complexity O(n*m)
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        m = len(matrix)
+        n = len(matrix[0])
+
+        coordinates = [[0 for i in range(n)] for j in range(m)]
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == 0:
+                    coordinates[i][j] = 1
+
+        for i in range(m):
+            for j in range(n):
+                if coordinates[i][j] == 1:
+                    for k in range(n):
+                        matrix[i][k] = 0
+                    # zeroing the column
+                    for c in range(m):
+                        matrix[c][j] = 0
+                        
+                        
+# Improved
+class Solution(object):
+    def setZeroes(self, matrix):
+        col0 = True
+        rows = len(matrix)
+        cols = len(matrix[0])
+
+        for i in range(rows):
+            if matrix[i][0] == 0:
+                col0 = False
+            for j in range(1, cols):
+                if matrix[i][j] == 0:
+                    matrix[i][0] = matrix[0][j] = 0
+
+        for i in range(rows - 1, -1, -1):
+            for j in range(1, cols):
+                if matrix[i][0] == 0 or matrix[0][j] == 0:
+                    matrix[i][j] = 0
+            if not col0:
+                matrix[i][0] = 0
+
 class Solution:
     def setZeroes(self, matrix: List[List[int]]) -> None:
         """
@@ -37,7 +83,6 @@ class Solution:
         if col_has_zero:
             for j in range(n):
                 matrix[j][0] = 0
-
 
 class Solution:
     def setZeroes(self, matrix: List[List[int]]) -> None:
