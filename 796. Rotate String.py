@@ -11,4 +11,7 @@ class Solution:
             s = s[1:] + s[0]
 
         return False
-
+    
+class Solution:
+    def rotate_string(A, B):
+        return len(A) == len(B) and B in A + A
