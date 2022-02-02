@@ -134,4 +134,35 @@ class Solution:
             elif s2_map[l] == s1_map[l] - 1:
                 count -=1
         return count == 26
+    
+# frequency map/educative
+class Solution:
+    def checkInclusion(self, pattern, string):
+        start = 0
+        matched = 0
+        char_frequency = {}
+
+        for i in range(len(pattern)):
+            if pattern[i] not in char_frequency:
+                char_frequency[pattern[i]] = 0
+            char_frequency[pattern[i]] += 1
+
+        for end in range(len(string)):
+            if string[end] in char_frequency:
+                char_frequency[string[end]] -= 1
+                if char_frequency[string[end]] == 0:
+                    matched += 1
+
+            if matched == len(char_frequency):
+                return True
+
+            if end >= len(pattern) - 1:
+                left_char = string[start]
+                start += 1
+                if left_char in char_frequency:
+                    if char_frequency[left_char] == 0:
+                        matched -= 1
+                    char_frequency[left_char] += 1
+
+        return False
         
