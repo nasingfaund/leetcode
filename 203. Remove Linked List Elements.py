@@ -4,6 +4,19 @@
 #         self.val = val
 #         self.next = next
 
+
+class Solution:
+    def removeElements(self, head, val):
+        new_head = curr = ListNode()
+        new_head.next = head
+        while curr and curr.next:
+            if curr.next.val == val:
+                curr.next = curr.next.next
+            else:
+                curr = curr.next
+
+        return new_head.next
+    
 class Solution:
     def removeElements(self, head, val):
         new_head = curr = ListNode()
@@ -15,11 +28,6 @@ class Solution:
             head = head.next
             
         return new_head.next
-
-
-
-
-
 
 class Solution:
     def removeElements(self, head, val):
