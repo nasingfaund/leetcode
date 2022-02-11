@@ -1,3 +1,32 @@
+class Solution:
+    def reorderList(self, head):
+        #step 1: find middle
+        if not head: 
+            return head
+        slow = fast = head
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        #step 2: reverse second half
+        temp = slow.next
+        rev_head = None
+        while temp:
+            node = temp.next
+            temp.next = rev_head
+            rev_head = temp
+            temp = node    
+        slow.next = None
+        
+        #step 3: merge lists
+        head1, head2 = head, rev_head
+        while head2:
+            nextt = head1.next
+            head1.next = head2
+            head1 = head2
+            head2 = nextt
+        
+
 from copy import deepcopy
 
 
