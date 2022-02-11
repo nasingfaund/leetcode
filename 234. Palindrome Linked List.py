@@ -1,4 +1,27 @@
-# Follow up: Could you do it in O(n) time and O(1) space?
+# Follow up: Could you do it in O(n) time and O(1) space? Yes, with accurate reverse part
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        slow = fast = head
+        
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            
+        rev_head = None
+        temp  = slow
+        while temp:
+            _next = temp.next
+            temp.next  = rev_head
+            rev_head = temp
+            temp = _next
+
+        while head!=slow:
+            if head.val != rev_head.val:
+                return False
+            head = head.next
+            rev_head = rev_head.next
+        return True
+
 # stack
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
