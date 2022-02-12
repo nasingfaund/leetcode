@@ -1,3 +1,34 @@
+# improved solution
+class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if k <= 1 or not head:
+            return head
+
+        current, previous = head, None
+        length = self.get_length(head)
+        
+        for _ in range(length // k):
+            last_node_of_first_part = previous
+            last_node_of_sub_list = current
+            
+            i = 0
+            while current and i < k:
+                temp = current.next
+                current.next = previous
+                previous = current
+                current = temp
+                i+=1
+
+            if last_node_of_first_part:
+                last_node_of_first_part.next = previous
+            else:
+                head = previous
+                
+            last_node_of_sub_list.next = current
+            previous = last_node_of_sub_list
+        return head
+        
+
 # after educative https://www.educative.io/courses/grokking-the-coding-interview/RMZylvkGznR
 class Solution:
     def reverseBetween(self, head: ListNode, p: int, q: int) -> ListNode:
