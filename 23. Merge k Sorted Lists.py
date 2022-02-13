@@ -1,3 +1,18 @@
+# brute force
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        nodes = []
+        dummy_head = curr = ListNode(-1)
+        for alist in lists:
+            while alist:
+                nodes.append(alist.val)
+                alist  = alist.next
+        for x in sorted(nodes):
+            curr.next = ListNode(x)
+            curr = curr.next
+        return dummy_head.next
+        
+        
 class Solution:
     def mergeTwoLists(self, list1, list2):
         dummy_head = curr = ListNode(-1)
