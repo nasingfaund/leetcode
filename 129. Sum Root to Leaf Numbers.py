@@ -11,7 +11,7 @@ class Solution:
         return self._sumNumers(root, 0)
 
       
- # bfs     
+# (Iterative DFS - preorder)
  class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         queue, total_sum = deque([(root, 0)]), 0
