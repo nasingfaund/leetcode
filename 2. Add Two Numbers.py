@@ -70,3 +70,46 @@ class Solution:
         return dummy_head.next
         
         
+        
+# last written (took more than 1 hour)
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        curr_l1, curr_l2 = l1, l2
+        
+        while curr_l1.next and curr_l2.next:
+            curr_l1 = curr_l1.next
+            curr_l2 = curr_l2.next
+            
+        while curr_l1 or curr_l2:
+            node = ListNode(0)
+            
+            if curr_l1.next and curr_l2:
+                curr_l2.next = node
+            elif curr_l2.next and curr_l1:
+                curr_l1.next = node
+            
+            curr_l2 = curr_l2.next
+            curr_l1 = curr_l1.next
+        
+        dummy_head = curr = ListNode(0)
+        curry = 0
+        while l1 and l2:
+            res = l1.val + l2.val + curry
+            if res >= 10:
+                curry = res // 10
+            else:
+                curry = 0
+            curr.next = ListNode(res % 10)
+            curr = curr.next
+
+            l1 = l1.next 
+            l2 = l2.next
+        
+        if curry:
+            curr.next  = ListNode(curry)
+
+                
+        return dummy_head.next
+    
+        
+        
