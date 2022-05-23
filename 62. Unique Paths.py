@@ -1,3 +1,4 @@
+# Time complexity O(m*n), Space complexity O(m*n)
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         matrix = [[1 for i in range(n)] for j in range(m)]
