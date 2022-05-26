@@ -1,3 +1,4 @@
+# Time complexity: O(amount*len(coins)), Space Complexity O(amount)
 class Solution:
     def coinChange(self, coins, amount: int) -> int:
         dp = [amount + 1]*(amount+1)
@@ -8,3 +9,26 @@ class Solution:
                 if i >= coin:
                     dp[i] = min(dp[i-coin]+1, dp[i])
         return dp[-1] if dp[-1] <= amount else -1
+
+    
+from collections import defaultdict
+class Solution:
+    def coinChange(self, coins, amount: int) -> int:
+        memo = {}
+
+        def find(coins, amount: int) -> int:
+            if amount == 0:
+                return 0
+            if amount in memo:
+                return memo[amount]
+            memo[amount] = float('inf')
+
+            for coin in coins:
+                if coin <= amount:
+                    memo[amount] = min(find(coins, amount - coin) + 1, memo[amount])
+
+            return memo[amount]
+
+        result = find(coins, amount)
+
+        return result if result != float('inf') else -1
