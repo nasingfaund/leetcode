@@ -43,8 +43,7 @@ class Solution:
             ans = float('inf')
             for coin in coins:
                 if coin <= amount:
-                    sub_ans = find(coins, amount - coin)
-                    ans = min(sub_ans + 1, ans)
+                    ans = min(find(coins, amount - coin) + 1, ans)
             return ans
 
         result = find(tuple(coins), amount)
