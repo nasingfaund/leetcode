@@ -11,7 +11,6 @@ class Solution:
         return dp[-1] if dp[-1] <= amount else -1
 
     
-from collections import defaultdict
 class Solution:
     def coinChange(self, coins, amount: int) -> int:
         memo = {}
@@ -30,5 +29,24 @@ class Solution:
             return memo[amount]
 
         result = find(coins, amount)
+
+        return result if result != float('inf') else -1
+    
+    
+class Solution:
+    def coinChange(self, coins, amount: int) -> int:
+        @cache
+        def find(coins, amount: int) -> int:
+            if amount == 0:
+                return 0
+
+            ans = float('inf')
+            for coin in coins:
+                if coin <= amount:
+                    sub_ans = find(coins, amount - coin)
+                    ans = min(sub_ans + 1, ans)
+            return ans
+
+        result = find(tuple(coins), amount)
 
         return result if result != float('inf') else -1
