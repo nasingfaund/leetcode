@@ -50,3 +50,23 @@ class Solution:
         result = find(tuple(coins), amount)
 
         return result if result != float('inf') else -1
+    
+# BFS (we need to find shortest path)
+class Solution:
+    def coinChange(self, coins, amount: int) -> int:
+        queue = deque([[0, amount]])
+        visited = {amount}
+
+        while queue:
+            curr, amount = queue.popleft()
+
+            if amount == 0:
+                return curr
+
+            for coin in coins:
+                value = amount - coin
+                if value >= 0 and value not in visited:
+                    queue.append([curr + 1, value])
+                    visited.add(value)
+        return -1
+
