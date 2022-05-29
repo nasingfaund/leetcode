@@ -38,3 +38,14 @@ class Solution:
                 subset.append(nums[i])
                 result.append(subset)
         return result
+    
+# backtracking 
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        def dfs(nums, index, path, result):
+            result.append(path)
+            for i in range(index, len(nums)):
+                dfs(nums, i+1, path + [nums[i]], result)
+        dfs(nums, 0, [], result)
+        return result
