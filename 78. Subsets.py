@@ -1,3 +1,4 @@
+# Time Complexity: O(n*2^n), Space Complexity: O(n*2^n)
 # bit manipulation
 class Solution:
     def subsets(self, nums):
