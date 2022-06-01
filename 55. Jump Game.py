@@ -20,9 +20,9 @@ class Solution:
 # O(n), Space O(1)      
 class Solution:
     def canJump(self, nums):
-        m = 0
-        for i, n in enumerate(nums):
-            if i > m:
+        furthest_jump = 0
+        for i in range(len(nums)):
+            if i>furthest_jump:
                 return False
-            m = max(m, i+n)
-        return True
+            furthest_jump = max(nums[i]+i, furthest_jump)
+        return  True
