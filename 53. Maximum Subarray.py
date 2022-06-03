@@ -49,5 +49,25 @@ class Solution:
             return [curr_max] + find(index + 1, curr_max)
 
         return max(find(0, 0))
+# return resulting array 
+class Solution:
+    def maxSubArray(self, nums) -> int:
+        maxi = nums[0]
+        curr_sum = 0
+        temp_first = 0
+        first = second = 0
+
+        for i in range(len(nums)):
+            curr_sum += nums[i]
+            if curr_sum > maxi:
+                maxi = curr_sum
+                first = temp_first
+                second = i
+            if curr_sum < 0:
+                curr_sum = 0
+                temp_first = i + 1
+
+        return sum(nums[first: second + 1])
+
 
             
