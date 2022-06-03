@@ -1,3 +1,15 @@
+# Brute Force - O(n^2), Space Complexity: O(1) - TLE
+class Solution:
+    def maxSubArray(self, nums) -> int:
+        best = 0
+        for i in range(len(nums)):
+            local_max = 0
+            for j in range(i, len(nums)):
+                local_max += nums[j]
+                best = max(best, local_max)
+
+    return best
+
 # Time Complexity: O(n), Space Complexity: O(1)
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
@@ -8,7 +20,7 @@ class Solution:
             best = max(best, curr_sum)
         return best
 
-# Recursive, Time Complexity: O(n), Time Complexity: O(1)
+# Recursive, Time Complexity: O(n), Time Complexity: O(n-for stack)
 class Solution:
     def maxSubArray(self, nums) -> int:
         def find(index, curr_max):
@@ -17,8 +29,8 @@ class Solution:
             curr_max = max(nums[index], curr_max + nums[index])
             return max(curr_max,  find(index + 1, curr_max))
         return find(0, 0)
-
     
+# Dynamic Programming - Tabulation
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         dp = [0]*len(nums)
