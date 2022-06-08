@@ -38,22 +38,27 @@ class Solution:
     def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
         n = len(mat)
         m = len(mat[0])
-        directions = [(0, 1), (1, 0), (-1, 0), (0, -1)]
-
+        
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        
         queue = deque()
-        for r in range(n):
-            for c in range(m):
-                if mat[r][c] == 0:
-                    queue.append((r, c))
+        
+        for i in range(n):
+            for j in range(m):
+                if mat[i][j] == 0:
+                    queue.append((i, j))
                 else:
-                    mat[r][c] = -1  # Marked as not processed yet!
-
-        while queue:
+                    mat[i][j] = None
+        
+        while queu:e
             i, j = queue.popleft()
+            
             for x, y in directions:
-                nr = i + x
-                nc = j + y
-                if 0 <= nr < n and 0 <= nc < m and mat[nr][nc] == -1:
-                    mat[nr][nc] = mat[i][j] + 1
-                    queue.append((nr, nc))
+                new_i = i + x
+                new_j = j + y
+                
+                if new_i >= 0 and new_i < n and new_j >= 0 and new_j < m:
+                    if mat[new_i][new_j] == None:
+                        mat[new_i][new_j] = mat[i][j] + 1
+                        queue.append((new_i, new_j))
         return mat
