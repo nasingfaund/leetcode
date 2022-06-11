@@ -1,21 +1,21 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         mapping = {
-            '{': '}',
             '(': ')',
+            '{': '}',
             '[': ']'
         }
         stack = []
         for i in range(len(s)):
-            if s[i] in mapping.keys():
+            if s[i] in mapping:
                 stack.append(s[i])
-
-            if s[i] in mapping.values():
+            else: # no need to check if s[i] in mapping.values()
                 if not stack:
                     return False
-                val = stack.pop()
-                if mapping[val] != s[i]:
+                elem = stack.pop()
+                if s[i] != mapping[elem]:
                     return False
-        if stack:
+        if stack: 
             return False
+        
         return True
