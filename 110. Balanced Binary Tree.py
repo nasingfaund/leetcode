@@ -12,6 +12,4 @@ class Solution:
     
         
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        res = self.dfs(root)
-        return res != -1
-        
+        return self.dfs(root) != -1
