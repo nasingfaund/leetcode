@@ -26,3 +26,20 @@ class Solution:
                 queue.append((root.left, cur))
         return total_sum
         
+# silly solution
+class Solution:
+    def dfs(self, root, curr, values):
+        if not root:
+            return 
+        if not root.left and not root.right:
+            values.append(curr)
+        if root.left:
+            self.dfs(root.left, curr*10 + root.left.val, values)
+        if root.right:
+            self.dfs(root.right, curr*10 + root.right.val, values)
+        
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        values = []
+        
+        self.dfs(root, root.val, values)
+        return sum(values)
