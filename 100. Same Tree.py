@@ -4,7 +4,7 @@ class Solution:
         if not q and not p:
             return True
         
-        if not p and q or not q and p: # or simply if not p or not q:
+        if if not p or not q:
             return False
         
         if p.val != q.val:
