@@ -1,3 +1,4 @@
+# compare with 547. Number of Provinces
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         n = len(grid) # rows
