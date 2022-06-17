@@ -6,24 +6,19 @@ class Solution:
         return [root.val] + self.preorderTraversal(root.left) + self.preorderTraversal(root.right)
         
 
-        
-        
- # iterative solution
- class Solution:
-    def preorderTraversal(self, root: TreeNode) -> List[int]:
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
-            return None
-        
+            return root
         stack = [root]
         result = []
-
         while stack:
-            node = stack.pop()
-            result.append(node.val)
+            root = stack.pop()
+            result.append(root.val)
+            if root.right:
+                stack.append(root.right)
+            if root.left:
+                stack.append(root.left)
 
-            if node.right:
-                stack.append(node.right)
-
-            if node.left:
-                stack.append(node.left)
         return result
+        
