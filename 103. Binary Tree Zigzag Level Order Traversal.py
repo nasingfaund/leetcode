@@ -1,3 +1,4 @@
+# improved
 class Solution:
     def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         result = []
@@ -22,4 +23,27 @@ class Solution:
                     queue.append(node.right)
             result.append(list(curr))
             leftToRight = not leftToRight
+        return result
+    
+class Solution:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root:
+            return []
+        queue = deque([root])
+        
+        result = []
+        is_revert = False
+        while queue:
+            if is_revert:
+                result.append(list(reversed([node.val for node in queue])))
+                is_revert = False
+            else:
+                result.append([node.val for node in queue])
+                is_revert = True
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
         return result
