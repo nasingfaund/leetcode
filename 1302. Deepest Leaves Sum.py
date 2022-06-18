@@ -29,3 +29,19 @@ class Solution:
             right = dfs(root.right, depth + 1)
             return self.res
         return dfs(root, 0)
+    
+class Solution:
+    def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
+        queue = deque([root])
+        result = 0
+        
+        while queue:
+            result = 0
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                result += node.val
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return result
