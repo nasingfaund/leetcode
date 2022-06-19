@@ -1,6 +1,41 @@
 class MyQueue:
 
     def __init__(self):
+        self.forward = [] # pop()
+        self.backward = []
+        
+
+    def push(self, x: int) -> None:
+        self.backward.append(x)
+        
+
+    def pop(self) -> int:
+        while self.backward:
+            self.forward.append(self.backward.pop())
+        elem = self.forward.pop()
+        
+        while self.forward:
+            self.backward.append(self.forward.pop())
+        return elem
+        
+
+    def peek(self) -> int:
+        while self.backward:
+            self.forward.append(self.backward.pop())
+        elem = self.forward[-1]
+        
+        while self.forward:
+            self.backward.append(self.forward.pop())
+        return elem
+        
+
+    def empty(self) -> bool:
+        return not bool(self.backward)
+        
+        
+class MyQueue:
+
+    def __init__(self):
         """
         Initialize your data structure here.
         """
