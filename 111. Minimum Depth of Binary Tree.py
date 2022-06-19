@@ -2,8 +2,7 @@ class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
-        queue = deque()
-        queue.append(root)
+        queue = deque([root])
         min_level = 0
         while queue:
             min_level +=1
@@ -18,3 +17,17 @@ class Solution:
                     queue.append(root.right)
                     
         return -1
+
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        def dfs(root):
+            if not root:
+                return float('inf')
+            if not root.left and not root.right:
+                return 1
+            left = dfs(root.left)
+            right = dfs(root.right)
+            
+            return min(left, right) + 1
+            
+        return dfs(root) if root else 0
