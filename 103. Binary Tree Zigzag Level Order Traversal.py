@@ -47,3 +47,31 @@ class Solution:
                 if node.right:
                     queue.append(node.right)
         return result
+
+class Solution:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root:
+            return []
+        
+        queue = deque([root])
+        
+        result = []
+        is_revert = True
+        while queue:
+            d = deque()
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+                    
+                if is_revert:
+                    d.append(node.val)
+                else:
+                    d.appendleft(node.val)
+                    
+            result.append(list(d))
+            is_revert = not is_revert
+        return result
+                    
