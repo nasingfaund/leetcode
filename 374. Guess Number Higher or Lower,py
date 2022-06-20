@@ -1,0 +1,19 @@
+class Solution:
+    def guessNumber(self, n: int) -> int:
+        # n - upper bound, number <= n
+        first = 1
+        last = n
+        
+        while first <= last:
+            middle = first + (last - first)//2
+            if guess(middle) == 0:
+                return middle
+            
+            if guess(middle) == 1:
+                first  = middle + 1
+            elif guess(middle) == -1:
+                last = middle - 1
+            else:
+                raise
+        
+        
