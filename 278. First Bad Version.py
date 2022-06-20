@@ -4,7 +4,7 @@ class Solution:
         last = n
         
         while first <= last:
-            middle = (first + last) // 2
+            middle = (first + last) // 2 # first + (second - first) // 2
 
             if isBadVersion(middle):
                 last = middle - 1
