@@ -1,3 +1,16 @@
+# DP: Time complexity O(N^2)
+class Solution:
+    def jobScheduling(self, startTime, endTime, profit):
+        alist = sorted(zip(startTime, endTime, profit), key=lambda x: x[0])
+        dp = [0]*(max(alist, key=lambda x: x[1])[1]+1)
+        for start_time, end_time, profit in alist:
+            current_profit = dp[start_time] + profit
+            if current_profit > dp[end_time]:
+                for i in range(end_time, len(dp)):
+                    dp[i] = max(dp[i], current_profit)
+        return dp[-1]
+        
+        
 # super inefficient solution, passes the half of tests, gives TLE (obviously). Bulshit code below
 class Solution:
     def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
@@ -22,3 +35,5 @@ class Solution:
         for i in range(len(jobs)):
             find(i, i, profit[i])
         return self.ans
+
+    
