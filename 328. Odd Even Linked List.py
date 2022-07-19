@@ -26,10 +26,10 @@ class Solution:
 
         
         
- class Solution:
+class Solution:
     def oddEvenList(self, head: ListNode) -> ListNode:
         if not head:
-            return None
+            return head
         odd = head
         even = head.next
         even_head = even
@@ -40,6 +40,3 @@ class Solution:
             even = even.next
         odd.next = even_head
         return head
-
-        
-        
