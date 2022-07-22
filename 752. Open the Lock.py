@@ -18,15 +18,14 @@ class Solution:
         
         deadends = set(deadends)
         queue = deque([[start, 0]])
-        visited = set()
         while queue:
             num, depth = queue.popleft()
-            visited.add(num)
 
             for neighbour in self.getNeighbors(num):
                     if neighbour == target:
                         return depth + 1
-                    if neighbour not in deadends and neighbour not in visited:
+                    if neighbour not in deadends:
                         queue.append((neighbour, depth + 1))
-                        visited.add(neighbour)
+                        deadends.add(neighbour)
         return -1
+
