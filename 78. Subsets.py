@@ -61,6 +61,7 @@ class Solution:
         def backtrack(index, curr, k):
             if len(curr) == k:
                 result.append(list(curr))
+                return 
             for i in range(index, len(nums)):
                 curr.append(nums[i])
                 backtrack(i + 1, curr, k)
