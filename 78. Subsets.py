@@ -50,3 +50,37 @@ class Solution:
                 dfs(nums, i+1, path + [nums[i]], result)
         dfs(nums, 0, [], result)
         return result
+    
+
+# backtracking
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+
+        result = []
+
+        def backtrack(index, curr, k):
+            if len(curr) == k:
+                result.append(list(curr))
+            for i in range(index, len(nums)):
+                curr.append(nums[i])
+                backtrack(i + 1, curr, k)
+                curr.pop()
+
+        for k in range(len(nums) + 1):
+            backtrack(0, [], k)
+        return result
+    
+def subsets(nums: List[int]) -> List[List[int]]:
+    subsets = []
+    expected_subsets = 2 ** len(nums)
+
+    def generate_subset(subset, nums):
+        if len(subsets) >= expected_subsets:
+            return
+        if len(subsets) < expected_subsets:
+            subsets.append(subset)
+        for i in range(len(nums)):
+            generate_subset(subset + [nums[i]], nums[i + 1:])
+
+    generate_subset([], nums)
+    return subsets
