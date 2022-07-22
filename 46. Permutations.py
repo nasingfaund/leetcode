@@ -63,4 +63,16 @@ def find_permutations(nums):
 
     return result
 
+def permute(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        def _permute(perm, nums):
+            if len(nums) == 0:
+                result.append(list(perm))
+            else:
+                for i in range(len(nums)):
+                    perm.append(nums.pop(0))
+                    _permute(perm, nums)
+                    nums.append(perm.pop())
+        _permute([], list(nums))
+        return result
 
