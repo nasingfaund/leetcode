@@ -50,3 +50,19 @@ class Solution:
 
         return True
             
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        answer1 = []
+        answer2 = []
+        self.helperFunction(p, q, answer1, answer2)
+
+        return answer1 == answer2
+
+
+    def helperFunction(self, p, q, answer1, answer2):
+        if p and q:
+            self.helperFunction(p.left, q.left, answer1, answer2)
+            self.helperFunction(p.right, q.right, answer1, answer2)
+
+            answer1.append(p.val if p else None)
+            answer2.append(q.val if q else None)
