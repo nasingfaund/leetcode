@@ -85,3 +85,18 @@ def subsets(nums: List[int]) -> List[List[int]]:
 
     generate_subset([], nums)
     return subsets
+
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result= []
+        def powerset(alist, index, curr):
+            if index == len(alist):
+                result.append(curr)
+                return 
+
+            powerset(alist, index + 1, curr + [alist[index]]) 
+            powerset(alist, index + 1, curr)
+        
+        powerset(nums, 0, [])
+        return result
