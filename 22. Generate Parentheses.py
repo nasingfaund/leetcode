@@ -25,5 +25,21 @@ class Solution:
 
         _gen(n, 0, "")
         return result
+    
+class Solution:
+    def generateParenthesis(self, n):
+        result = []
+        def generate(curr, left, right, n):
+            if len(curr) == 2 * n:
+                result.append(curr)
+            if left < n:
+                generate(curr + '(', left + 1, right, n)
+            if right < left:
+                generate(curr + ')', left, right + 1, n)
+        
+        generate('', 0, 0, n)
+        return result     
+        
 
+        
         
