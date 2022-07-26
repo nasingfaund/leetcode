@@ -21,3 +21,11 @@ class Solution:
         if sub_res:
             result.append(list(sub_res))
         return result
+    
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        d = defaultdict(list)
+        for w in strs:
+            key = tuple(sorted(w))
+            d[key].append(w)
+        return d.values()
