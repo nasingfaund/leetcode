@@ -38,16 +38,15 @@ class Solution:
     
     
 class Solution:
-
     def canPartition(self, nums):
         total_sum = sum(nums)
-        
-        if total_sum % 2 == 1:
+
+        if total_sum & 2 == 1:
             return False
-        
+
         half_sum = total_sum // 2
-        aset = set([0])
-        
+        aset = {0}
+
         for num in nums:
             subset = set()
             for elem in aset:
@@ -56,4 +55,5 @@ class Solution:
                 subset.add(elem + num)
             aset |= subset
         return half_sum in aset
+
         
