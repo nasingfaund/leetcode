@@ -44,7 +44,21 @@ def backtracking(res, visited, subset, nums):
             visited.add(i)
             backtracking(res, visited, subset + [nums[i]], nums)
             visited.remove(i)
-
+            
+class Solution(object):
+    def permute(self, nums):
+        result = []
+        def _permute(nums, curr):
+            if not nums:
+                result.append(list(curr))
+                return 
+            for i in range(len(nums)):
+                curr.append(nums[i])
+                _permute(nums[:i] + nums[i+1:], curr)
+                curr.pop()
+        _permute(nums, [])
+        return result
+                
     
 def find_permutations(nums):
     result = []
