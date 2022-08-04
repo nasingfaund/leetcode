@@ -1,3 +1,5 @@
+# todo: solve this using one array
+
 # first version
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
@@ -22,8 +24,27 @@ class Solution:
             for i in range(len(nums)):
                 output.append(full_product//nums[i])
         return output
-                    
-        
+    
+# using two arrays    
+class Solution:
+    def productExceptSelf(self, nums):
+        products_below = []
+        p = 1
+        for num in nums:
+            products_below.append(p)
+            p *= num
+        product_above = []
+        p = 1
+
+        for num in nums[::-1]:
+            product_above.insert(0, p)
+            p *= num
+
+        result = []
+        for i in range(len(product_above)):
+            value = product_above[i] * products_below[i]
+            result.append(value)
+        return result        
 
 class Solution:
   def productExceptSelf(self, nums: List[int]) -> List[int]:
