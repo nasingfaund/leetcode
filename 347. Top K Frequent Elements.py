@@ -9,6 +9,6 @@ class Solution:
         from collections import Counter
         ranked = [[] for _ in range(len(nums) + 1)]
         c = Counter(nums)
-        for key, val in c.items():
-            ranked[val].append(key)
+        for key, count in c.items():
+            ranked[count].append(key)
         return list(chain(*ranked))[-k:]
