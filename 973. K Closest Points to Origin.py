@@ -12,3 +12,16 @@ class Solution:
         return [p for p, v in adict[:k]]
         
         
+class Solution:
+    def get_distance(self, x, y):
+        return x*x + y*y
+    
+    def kClosest(self, P, k):
+        heap = []
+        for i, (x, y) in enumerate(P):
+            d = self.get_distance(x, y)
+            if len(heap) == k:
+                heappushpop(heap, (-d, i))     
+            else: 
+                heappush(heap, (-d, i))
+        return [P[i] for (_, i) in heap]
