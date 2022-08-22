@@ -1,4 +1,20 @@
 class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        d = {n: i for i, n in enumerate(nums)}
+        res = set()
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)):
+                x, y =  nums[i], nums[j]
+                z = x + y
+                if d.get(-z, 0) > j:
+                    elem = tuple(sorted((x, y, -z)))
+                    if elem not in res:
+                        res.add(elem)
+        return res
+
+
+
+class Solution:
     def threeSum(self, nums):
         if not nums:
             return nums
