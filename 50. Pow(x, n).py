@@ -14,3 +14,21 @@ class Solution:
         f = function(x, abs(n))
         
         return float(f) if n >= 0 else 1/f
+
+# https://cp-algorithms.com/algebra/binary-exp.html 
+class Solution:
+    def binpow(self, a, n):
+        ans = 1
+        while n:
+            if n & 1:
+                ans *= a
+            a*=a
+            n >>=1
+        return ans 
+    
+    def myPow(self, x: float, n: int) -> float:
+        is_neg = True if n <0 else False
+        n = abs(n)
+        
+        return 1/self.binpow(x, n) if is_neg else self.binpow(x, n)
+       
