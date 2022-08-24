@@ -1,3 +1,5 @@
+# https://assets.leetcode.com/users/images/5f84e242-69cb-4dc4-97ef-f492465f46f3_1595418237.69286.png
+
 class Solution:
     def myPow(self, x: float, n: int) -> float:
 
