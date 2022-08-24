@@ -29,3 +29,20 @@ class Solution:
         for i in range(2, len(alist)):
             result[i] = max(result[i - 1], result[i - 2] + alist[i])
         return result[-1]
+    
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        alist = nums
+        if len(nums) == 0:
+            return 0
+        if len(alist) == 1:
+            return alist[0]
+        non_neighbour_sum = alist[0]
+        
+        neighbour_sum = max(alist[0], alist[1])
+        for i in range(2, len(alist)):
+            curr_sum = max(neighbour_sum, non_neighbour_sum + alist[i])
+            non_neighbour_sum = neighbour_sum
+            neighbour_sum = curr_sum
+            
+        return neighbour_sum
