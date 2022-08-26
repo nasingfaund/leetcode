@@ -1,4 +1,37 @@
 # https://assets.leetcode.com/users/images/5f84e242-69cb-4dc4-97ef-f492465f46f3_1595418237.69286.png
+        
+# https://www.youtube.com/watch?v=L-Wzglnm4dM        
+class Solution:
+    def binpow(self, a, n):
+        if n == 0:
+            return 1
+        if n == 1:
+            return a
+        tmp = self.myPow(a, n // 2)
+        result = tmp * tmp
+        if n % 2 == 1:
+            result *= a
+        return result
+
+        
+    def myPow(self, a, n):
+        return 1/self.binpow(a, abs(n)) if n < 0 else self.binpow(a, n) 
+        
+        
+ class Solution:
+    def binpow(self, a, n):
+        a, b = a, n
+        result = 1
+        while b > 0:
+            if b % 2 == 1:
+                result *= a
+            a *= a
+            b //= 2
+        return result
+
+    def myPow(self, a, n):
+        return 1/self.binpow(a, abs(n)) if n < 0 else self.binpow(a, n) 
+ 
 
 class Solution:
     def myPow(self, x: float, n: int) -> float:
@@ -32,3 +65,7 @@ class Solution:
         
         return 1/self.binpow(x, n) if is_neg else self.binpow(x, n)
        
+
+        
+
+        
