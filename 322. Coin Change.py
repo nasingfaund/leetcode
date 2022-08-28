@@ -1,3 +1,19 @@
+# DP not optimal by space 
+class Solution:
+    def coinChange(self, coins, amount: int) -> int:
+        n = len(coins)
+        dp = [[float('inf')] * (amount + 1) for _ in range(n)]
+
+        for i in range(len(coins)):
+            dp[i][0] = 0
+            for j in range(1, amount+1):
+                if j >= coins[i]:
+                    dp[i][j] = min(dp[i-1][j], 1 + dp[i][j - coins[i]])
+                else:
+                    dp[i][j] = dp[i-1][j]
+        return dp[n-1][amount] if dp[n-1][amount] != float('inf') else -1
+
+
 # Time complexity: O(amount*len(coins)), Space Complexity O(amount)
 class Solution:
     def coinChange(self, coins, amount: int) -> int:
