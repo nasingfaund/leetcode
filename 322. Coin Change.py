@@ -67,21 +67,21 @@ class Solution:
         return result if result != float('inf') else -1
     
 # BFS (we need to find shortest path)
+from collections import defaultdict
 class Solution:
-    def coinChange(self, coins, amount: int) -> int:
-        queue = deque([[0, amount]])
-        visited = {amount}
-
+    def coinChange(self, coins, amount):
+        queue = deque([[amount, 0]])
+        visited = set()
         while queue:
-            curr, amount = queue.popleft()
-
-            if amount == 0:
-                return curr
-
+            elem, count = queue.popleft()
+            if elem == 0:
+                return count
             for coin in coins:
-                value = amount - coin
-                if value >= 0 and value not in visited:
-                    queue.append([curr + 1, value])
+                value = elem - coin
+                if value not in visited and value >= 0:
+                    queue.append([value, count + 1])
                     visited.add(value)
         return -1
+
+
 
