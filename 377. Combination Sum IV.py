@@ -12,14 +12,16 @@ class Solution:
 class Solution:
     def combinationSum4(self, nums: List[int], target: int) -> int:
         @cache
-        def dp(target):
+        def helper(target):
             if target == 0:
                 return 1
-            result = 0
-            for num in nums:
-                if target >= num:
-                    result += dp(target-num)
+            if target < 0:
+                return
+            res = 0
+            for i in range(len(nums)):
+                if target >= nums[i]:
+                    res += helper(target - nums[i])
+            return res
+        
+        return helper(target)
                 
-            return result
-        return dp(target)
-            
