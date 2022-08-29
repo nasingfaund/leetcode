@@ -1,5 +1,23 @@
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
+        res = []
+
+        def backtrack(i, path):
+            if len(path) == k:
+                res.append(path[:])
+                return
+            
+            for j in range(i, n):
+                path.append(j + 1)
+                backtrack(j + 1, path)
+                path.pop()
+
+        backtrack(0, [])
+        return res
+
+
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
         alist = list(range(1, n+1))
         result = []
         stack = [[alist, [], k]]
