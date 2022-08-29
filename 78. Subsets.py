@@ -1,3 +1,17 @@
+# std solution
+class Solution:
+    def subsets(self, nums: List[int], index=0) -> List[List[int]]:
+        result = []
+        for i in range(len(nums)+1):
+            result += itertools.combinations(nums, i)
+        return result
+    
+class Solution:
+    def subsets(self, nums: List[int], index=0) -> List[List[int]]:
+        for i in range(len(nums)+1):
+            for subset in itertools.combinations(nums, i):
+                yield subset
+
 # Time Complexity: O(n*2^n), Space Complexity: O(n*2^n)
 # bit manipulation
 class Solution:
