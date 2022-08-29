@@ -11,7 +11,23 @@ class Solution:
                 continue
             self.dfs(nums[i+1:], path + [nums[i]], result)
         
-
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        self.dfs(sorted(nums), [], result, 0)
+        return result 
+    
+    def dfs(self, nums, curr, result, index):
+        result.append(curr[:])
+            
+        for i in range(index, len(nums)):
+            if i > index and nums[i] == nums[i-1]:
+                continue
+            curr.append(nums[i])
+            self.dfs(nums, curr, result, i+1)
+            curr.pop()
+       
+            
 # first version
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
