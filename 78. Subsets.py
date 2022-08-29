@@ -20,9 +20,10 @@ class Solution:
 class Solution:
     def subsets(self, nums):
         res = []
-        for i in range(1 << len(nums)):
+        n = len(nums)
+        for i in range(1 << n):
             aset = []
-            for j in range(len(nums)):
+            for j in range(n):
                 value = (1 << j) & i #  value = (i >> j) & 1
                 if value:
                     aset.append(nums[j])
@@ -100,3 +101,16 @@ class Solution:
         
         powerset(nums, 0, [])
         return result
+    
+# I love generators
+class Solution:
+    def subsets(self, nums: List[int], index=0) -> List[List[int]]:
+        def powerset(alist, index, curr):
+            if index == len(alist):
+                yield curr
+                return 
+
+            yield from powerset(alist, index + 1, curr + [alist[index]])  
+            yield from powerset(alist, index + 1, curr)
+        
+        yield from powerset(nums, 0, [])
