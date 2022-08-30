@@ -1,3 +1,13 @@
+class Solution(object):
+    def permute(self, nums, index=0):
+        if index == len(nums):
+            yield nums[:]
+        else:
+            for i in range(index, len(nums)):
+                nums[index], nums[i] = nums[i], nums[index]
+                yield from self.permute(nums, index + 1)
+                nums[index], nums[i] = nums[i], nums[index]
+
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         res = []
