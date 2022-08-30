@@ -66,6 +66,18 @@ class Solution:
 
         return result if result != float('inf') else -1
     
+class Solution:
+    def coinChange(self, coins, amount):
+        @cache
+        def helper(amount):
+            if amount == 0:
+                return 0
+            if amount < 0:
+                return float('inf')
+            return min(helper(amount-coin)+1 for coin in coins)
+        res = helper(amount)
+        return res if res != float('inf') else -1    
+    
 # BFS (we need to find shortest path)
 from collections import defaultdict
 class Solution:
