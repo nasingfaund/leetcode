@@ -1,4 +1,6 @@
 # TLE, how to improve? Time Complexity: O(2**n), Space Complexity: O(1)
+# Answer: use clever bitmasking operations
+
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
         result = 0
@@ -19,19 +21,20 @@ class Solution:
 class Solution:
     def findTargetSumWays(self, nums, target):
         @cache
-        def _findTargetSumWays(sum, index) -> int:
+        def helper(sum, index) -> int:
             if index == len(nums):
                 if sum == target:
                     return 1
                 return 0
 
-            first = _findTargetSumWays(sum + nums[index], index + 1)
+            add = helper(sum + nums[index], index + 1)
 
-            second = _findTargetSumWays(sum - nums[index], index + 1)
+            sub = helper(sum - nums[index], index + 1)
 
-            return first + second
-        
-        return _findTargetSumWays(0, 0)
+            return add + sub
+
+        return helper(0, 0)
+
         
 class Solution:
     def findTargetSumWays(self, nums, target):
