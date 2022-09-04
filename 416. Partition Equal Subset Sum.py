@@ -1,39 +1,43 @@
 class Solution:
+    def canPartition(self, alist):
+        whole_sum = sum(alist)
+        if whole_sum & 1:
+            return False
+        half_sum = whole_sum // 2
 
-    def canPartition(self, nums):
-        @cache
-        def _can_partition(index, s):
-            if s == 0:
-                return True
+        @cache        
+        def find(index, curr):
 
-            if index >= len(nums) or s < 0: # or if num[index] <= sum:
+            if index >= len(alist) or curr > half_sum:
                 return False
+            if curr == half_sum:
+                return True
+            return find(index + 1, curr + alist[index]) or find(index + 1, curr)
 
-            return _can_partition(index + 1, s-nums[index]) or _can_partition(index + 1, s)
-        
-        total_sum = sum(nums)
-        
-        return total_sum & 1 == 0 and _can_partition(0, total_sum//2)
+        return find(0, 0)
+
         
 class Solution:
-
-    def canPartition(self, nums):
+    def canPartition(self, alist):
+        whole_sum = sum(alist)
+        if whole_sum & 1:
+            return False
+        half_sum = whole_sum // 2
         memo = {}
-        def _can_partition(index, s):
-            if (index, s) in memo:
-                return memo[(index, s)]
-            
-            if s == 0:
-                return True
 
-            if index >= len(nums) or s < 0: # or if num[index] <= sum:
+        def find(index, curr):
+            if (index,curr) in memo:
+                return memo[(index, curr)]
+
+            if index >= len(alist) or curr > half_sum:
                 return False
-            memo[(index, s)] = _can_partition(index + 1, s-nums[index]) or _can_partition(index + 1, s)
-            return memo[(index, s)]
-        
-        total_sum = sum(nums)
-        
-        return total_sum & 1 == 0 and _can_partition(0, total_sum//2)
+            if curr == half_sum:
+                return True
+            memo[(index, curr)] =  find(index + 1, curr + alist[index]) or find(index + 1, curr)
+
+            return memo[(index, curr)]
+        return find(0, 0)
+
     
     
     
@@ -56,7 +60,26 @@ class Solution:
             aset |= subset
         return half_sum in aset
     
-# two dimensional DP        
+# two dimensional DP
+
+# the last version
+class Solution:
+    def canPartition(self, alist):
+        whole_sum = sum(alist)
+        if whole_sum & 1:
+            return False
+        half_sum = whole_sum // 2
+        dp = [[True] + [False]*half_sum for _ in range(len(alist))]
+        
+        for i in range(len(alist)):
+            for num in range(1, half_sum + 1):
+                if alist[i] <= half_sum:
+                    dp[i][num] = dp[i-1][num] or dp[i-1][num - alist[i]]
+                else:
+                    dp[i][num] = dp[i-1][num]
+
+        return dp[-1][-1]
+    
 class Solution:
     def canPartition(self, nums):
         total_sum = sum(nums)
