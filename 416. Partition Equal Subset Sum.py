@@ -116,3 +116,16 @@ class Solution:
                 if alist[i] <= num:
                     dp[num] = dp[num] or dp[num - alist[i]]
         return dp[-1]
+    
+# DP with bitmasking 
+class Solution:
+    def canPartition(self, nums):
+        whole_sum = sum(nums)
+        if whole_sum & 1:
+            return False
+        half_sum = whole_sum // 2
+        dp = 1
+        for num in nums:
+            dp |= dp << num
+        return bool(dp & 1 << half_sum)
+
