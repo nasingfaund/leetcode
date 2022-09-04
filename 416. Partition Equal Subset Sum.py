@@ -100,3 +100,19 @@ class Solution:
                     dp[i][j] = dp[i-1][j] or dp[i-1][j-nums[i]]
                     
         return dp[len(nums)-1][half_sum]
+    
+# Space optimized
+class Solution:
+    def canPartition(self, alist):
+        whole_sum = sum(alist)
+        if whole_sum & 1:
+            return False
+        half_sum = whole_sum // 2
+        
+        dp = [True] + [False]*half_sum
+        
+        for i in range(len(alist)):
+            for num in range(half_sum, i, -1): # or range(half_sum, -1, -1)
+                if alist[i] <= num:
+                    dp[num] = dp[num] or dp[num - alist[i]]
+        return dp[-1]
