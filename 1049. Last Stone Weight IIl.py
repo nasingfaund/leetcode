@@ -22,7 +22,7 @@ class Solution:
         @cache
         def find(s=0, index=0):
             if index >= len(A):
-                return float('inf') if s < 0 else s
+                return float('inf') if s < 0 else s # abs(s)
             add = find(s + A[index], index + 1)
             sub = find(s - A[index], index + 1)
             
