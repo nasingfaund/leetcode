@@ -25,7 +25,7 @@ class Solution:
                 max_sum = max(max_sum, curr_sum)
         return max_sum / k
     
- class Solution:
+class Solution:
     def findMaxAverage(self, nums: List[int], k: int) -> float:
         if not nums:
             return 0
@@ -33,7 +33,7 @@ class Solution:
         left = right = 0
         curr_sum = 0
         max_sum = float('-inf')
-        while right < len(nums) and right >= left:
+        while right < len(nums):
             while right - left != k or right < k:
                 curr_sum += nums[right]
                 right += 1
@@ -42,6 +42,7 @@ class Solution:
             curr_sum -= nums[left]
             left += 1
         return max_sum / k
+
 
       
 # Refactored
