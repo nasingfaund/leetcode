@@ -1,4 +1,4 @@
-# Time Limit Exceeded
+# Time Limit Exceeded/Brute-force
 class Solution:
     def findMaxAverage(self, nums: List[int], k: int) -> float:
         curr_avg = float("-inf")
@@ -43,6 +43,14 @@ class Solution:
             left += 1
         return max_sum / k
 
+# prefix_sum
+class Solution:
+    def findMaxAverage(self, nums, k):
+        sums = [0] + list(itertools.accumulate(nums))
+        max_sum = float('-inf')
+        for i in range(k, len(sums)):
+            max_sum = max(max_sum, sums[i] - sums[i-k])
+        return max_sum / k
 
       
 # Refactored
