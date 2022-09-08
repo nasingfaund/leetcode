@@ -1,4 +1,28 @@
 class Solution:
+    def findAnagrams(self, s2: str, s1: str) -> List[int]:
+        needle = Counter(s1)
+        window_size = len(s1)
+
+        freq_map = Counter()
+        left = right = 0
+        result = []
+        while right < len(s2):
+            if freq_map == needle:
+                result.append(left)
+
+            while right - left >= window_size:
+                freq_map[s2[left]] -= 1
+                if freq_map[s2[left]] == 0:
+                    freq_map.pop(s2[left])
+                left += 1
+
+            freq_map[s2[right]] += 1
+            right += 1
+        if freq_map == needle:
+            result.append(left)
+        return result
+
+class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
         if len(p) > len(s):
             return []
