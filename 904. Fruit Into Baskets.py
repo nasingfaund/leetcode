@@ -19,3 +19,23 @@ class Solution:
             max_len = max(max_len, end - start + 1)
         return max_len
 
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        max_len = 0
+        adict = defaultdict(int)
+
+        left = right = 0
+
+        while right < len(fruits):
+            adict[fruits[right]] += 1
+
+            while len(adict) > 2:
+                max_len = max(max_len, right - left)
+                adict[fruits[left]] -= 1
+                if adict[fruits[left]] == 0:
+                    adict.pop(fruits[left])
+                left += 1
+
+            right += 1
+
+        return max(max_len, right - left)
