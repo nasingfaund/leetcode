@@ -1,3 +1,30 @@
+# Using counter, Time Complexity: O(n), Space: O(26)
+# The above algorithm’s time complexity will be O(N+M), where N and M are the number of characters in the input string and the pattern, respectively.
+where ‘N’ and ‘M’ are the number of characters in the input string and the pattern, respectively.
+from collections import Counter
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        needle = Counter(s1)
+        window_size = len(s1)
+
+        freq_map = Counter()
+        left = right = 0
+
+        while right < len(s2):
+            if freq_map == needle:
+                return True
+
+            while right - left >= window_size:
+                freq_map[s2[left]] -= 1
+                if freq_map[s2[left]] == 0:
+                    freq_map.pop(s2[left])
+                left += 1
+
+            freq_map[s2[right]] += 1
+            right += 1
+            
+        return freq_map == needle
+
 # O(n//k) * O(k) * O(k^2 log k) = O((n*k^2logk) - check?
 
 class Solution:
@@ -165,4 +192,3 @@ class Solution:
                     char_frequency[left_char] += 1
 
         return False
-        
