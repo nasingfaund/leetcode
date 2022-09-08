@@ -21,19 +21,21 @@ class Solution:
 # two pointers, complexity O(n)
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        min_len = float('inf')
-        win_sum = 0
-        first = 0
-        
-        for second in range(len(nums)):
-            win_sum += nums[second]
-            
-            while win_sum >= target:
-                min_len = min(min_len, second - first + 1)
-                win_sum -= nums[first]
-                first+=1
-        if min_len == float('inf'):
-            min_len = 0
-        return min_len
-                
+        left = right = 0
+        curr_sum = 0
+        min_length = float('inf')
+        while right < len(nums):
+            curr_sum += nums[right]
+
+            while curr_sum >= target:
+                min_length = min(min_length, right - left + 1)
+                curr_sum -= nums[left]
+                left += 1
+            right += 1
+
+        if min_length == float('inf'):
+            min_length = 0
+
+        return min_length
+
         
