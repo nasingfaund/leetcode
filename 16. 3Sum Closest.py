@@ -24,27 +24,19 @@ class Solution:
 
         return close_sum
 
-# improved, not mine
 class Solution:
-    def threeSumClosest(self, nums, target):
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
         nums.sort()
-        result = nums[0] + nums[1] + nums[2]
-        first = 0
-        while first < len(nums) - 2:
-            second = first + 1
-            third = len(nums) - 1
-            while second < third:
-                sum3 = nums[first] + nums[second] + nums[third]
-                if sum3 == target:
-                    return sum3
-                
-                if abs(sum3 - target) < abs(result - target):
-                    result = sum3
-                
-                if sum3 < target:
-                    second += 1
-                elif sum3 > target:
-                    third -= 1
-            first += 1
-            
-        return result
+        res = sum(nums[:3])
+        for i in range(len(nums) - 2):
+            left = i + 1
+            right = len(nums) - 1
+            while left < right:
+                curr = nums[left] + nums[right] + nums[i]
+                if curr >= target:
+                    right -= 1
+                else:
+                    left += 1
+                if abs(curr - target) < abs(res - target):
+                    res = curr
+        return res
