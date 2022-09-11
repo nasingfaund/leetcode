@@ -1,7 +1,7 @@
 # memory limit - crap!
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        
+        @cache
         def helper(curr_string):
             if curr_string == s:
                 return True
