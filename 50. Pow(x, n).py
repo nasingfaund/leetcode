@@ -68,4 +68,18 @@ class Solution:
 
         
 
+class Solution:
+    def binpow(self, a, n):
+        res = 1
+        while n:
+            if n % 2 == 1:
+                res *= a
+            a = a * a
+            n //= 2
+
+        return res
+
+
+    def myPow(self, a, n):
+        return 1/self.binpow(a, abs(n)) if n < 0 else self.binpow(a, n) 
         
